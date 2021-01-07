@@ -1,0 +1,18 @@
+{
+  "name": "Raghunath D",
+  "short_name": "Raghunath D",
+  "lang": "en-us",
+  "theme_color": "#3f51b5",
+  "background_color": "#3f51b5",
+  "icons": [{
+    "src": "/images/icon_hu2a24d64a1d3337d6c35b2d1236b185f6_78281_192x192_fill_lanczos_center_2.png",
+    "sizes": "192x192",
+    "type": "image/png"
+    }, {
+    "src": "/images/icon_hu2a24d64a1d3337d6c35b2d1236b185f6_78281_512x512_fill_lanczos_center_2.png",
+    "sizes": "512x512",
+    "type": "image/png"
+     }],
+  "display": "standalone",
+  "start_url": "/?utm_source=web_app_manifest"
+}
