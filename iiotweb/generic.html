@@ -1,0 +1,207 @@
+<!DOCTYPE HTML>
+<!--
+	Hyperspace by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+
+<html>
+	<head>
+		<title>Industrial Internet of Things</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+
+
+		<!-- Header -->
+			<header id="header">
+				<a href="index.html" class="title">Project Achievements</a>
+				<nav>
+					<ul>
+						<li><a onClick="function back(){window.history.back()}; back();">Back</a></li>
+						<!-- <li><a href="generic.html" class="active">More</a></li>-->
+						<!-- <li><a href="elements.html">Elements</a></li> -->
+					</ul>
+				</nav>
+			</header>
+
+
+
+
+
+		<!-- Wrapper -->
+			<div id="sense">
+
+
+				<!-- Main -->
+					<section id="sense1" class="wrapper">
+							
+						<div class="inner">
+							
+						<h1 class="major">Sensing Modalities & Network &nbsp;
+						<!-- <h1 class="major">Sensing Modalities & Network				 -->
+						
+						</h1>
+						<!-- <ul class="actions">
+								<li><a href="#" onclick="history.go(-1)" class="button scrolly">Go back</a></li>
+							</ul> -->
+							
+			                                	
+						
+							<span class="image center"><img src="images/figa1.png" alt="" height="342" width="642"/><figcaption style="text-align:center"><b>Fig. 1: Sensing locations and modalities at Vinyas factory</b></figcaption></span>
+							<span class="image center"><img src="images/figa2.png" alt="" height="342" width="442"/><figcaption style="text-align:center"><b>Fig. 2: Data flow architecture</b></figcaption> </span>
+							<p></p>
+							<p>Various sensors such as vibration, proximity, temperature sensors and current meters were placed along the automated assembly line as shown in Fig. 1.</p> 
+							<p>Data Flow Architecture - Data flows from sensors connected to IOT End-Devices at the factory via IOT Gateway and Middleware server to the data store server at RBCCPS, IISc Bangalore, as shown in Fig. 2. The IOT Gateways receive sensor data over GPIO, MODBUS and BLE and use MQTT service internally before forwarding them over REST APIs to the Middleware server which hosts an Elasticsearch database. The data is time stamped at the IOT Gateways and the clocks of the gateways are synchronised using NTP service with the NTP server running on the Middleware. The communication network architecture is shown in Fig. 3 which consists of two wireless access points creating a subnet to which the IOT gateways and Middleware connect to. The architecture of microservices of the IOT gateway is in Fig. 4.</p>
+							
+							<span class="image center"><img src="images/figa3.png" alt="" height="342" width="542"/><figcaption style="text-align:center"><b>Fig. 3: Communication Network Architecture</b></figcaption> </span> 
+							<span class="image center"><img src="images/figa4.png" alt="" height="342" width="542"/><figcaption style="text-align:center"><b>Fig. 4: Gateway Internal Architecture</b></figcaption> </span> </hr>
+							
+							<p></p>
+							<p>The Middleware at Vinyas and a cloud compute server are connected over a VPN for transparent accessibility of the elasticsearch database. The cloud server is leveraged to perform event detection and state estimation algorithms on the incoming data every 15 minutes. Kibana, a visualization service, runs at both the middleware and the compute server for inspection of the incoming raw data, detected events and the estimated states.</p>
+							<ul class="actions">
+									<li><a href="#" onclick="history.go(-1)" class="button scrolly">Go back</a></li>
+								</ul>
+						</div>
+					</section>
+			</div>
+			<div id="model">
+
+				<!-- Main -->
+					<section id="model1" class="wrapper">
+						<div class="inner">
+							<h1 class="major">Model Exploration</h1>
+							
+							<span class="image center"><img src="images/figa5.png" alt="" height="342" width="542"/><figcaption style="text-align:center"><b>Fig. 5: Digital Twin Model of SMT PCB Manufacturing Line</br></br></br></b></figcaption> </span>
+							<span class="image center"><img src="images/figa6.png" alt="" height="342" width="542"/><figcaption style="text-align:center"><b>Fig. 6: Distribution of energy among the main components </br>(Pick and Place 1 & 2, Reflow Oven, Screen Printer) </br>in the SMT assembly line (plotted over six days)</b></figcaption> </span></hr>
+							
+							<p>This involves the development of a detailed simulation model of the manufacturing line for prediction, bottleneck identification, what-if analysis, optimization and real-time monitoring. It was developed using SimPy python library, a discrete-event simulator. 
+								The assembly line consists of several machines connected over conveyor belts. PCBs flow over the belts and are processed by each machine in sequence. Human operators are responsible for loading stacks of PCBs onto the line, and for the refilling of consumables. The block diagram of the assembly line is shown in Fig. 5.</p>
+							<p>Among all machines in the SMT assembly line, the reflow oven typically accounts for the highest energy consumption. Fig. 6 shows the distribution of energy consumption across the main components in the SMT assembly line at the Vinyas factory. The reflow oven is seen to account for more than 85% of the total energy consumption in the line. The throughput bottleneck is typically the pick and place operation which incurs the highest latency. As a result, the reflow oven typically remains powered on yet unutilized for a large fraction of the time. 
+								For such lines, we have suggested a buffering technique that may help improve the utilization of the reflow oven thereby improving the energy efficiency. PCBs can be buffered after the pick and place operation and sent through the reflow oven in bursts. Thus, the reflow oven can be powered on for only a fraction of the production period.</p>
+							
+							<span class="image center"><img src="images/figa7.png" alt="" height="242" width="542"/><figcaption style="text-align:center"><b>Fig. 7: Two configurations of SMT assembly line evaluated</b></figcaption> </span>
+							<span class="image right"><img src="images/figa8.png" alt="" height="342" width="342"/><figcaption style="text-align:center"><b>Fig. 8: A plot of the average energy consumed per-PCB and the system
+								throughput as a function of the Reflow-oven turn-on threshold K for the
+								double buffering scheme with N = 128
+								</b></figcaption> </span>
+							<p>We evaluate the impact of such a buffering on the throughput and energy efficiency of the line.
+								Fig. 7 shows two configurations (with and without buffering) of the assembly line evaluated using simulations. The model has been calibrated using data that was collected from the real assembly line using an IoT framework. The simulations predicted a 2.7x reduction in the average energy consumption achievable via buffer insertion without significantly affecting the line throughput. Fig. 8 shows the variation of efficiency with changing Reflow-oven turn-on threshold for buffer size 128. This work was submitted and accepted at the IEEE 2018 International Conference on Internet of Things and Intelligence Systems (IoTAIS), 1 to 3 November 2018, Bali (Indonesia).</p>
+								<ul class="actions">
+										<li><a href="#" onclick="history.go(-1)" class="button scrolly">Go back</a></li>
+									</ul>
+							</div>
+					</section>
+			</div>
+			<div id="data">
+
+				<!-- Main -->
+					<section id="data1" class="wrapper">
+						<div class="inner">
+							<h1 class="major">Data Analysis for Machine State Identification and Event Detection</h1>
+							<span class="image fit"><img src="images/figa9.png" height="542" width="1442"/><figcaption style="text-align:center"><b>Fig. 10: Board-working events being detected on the pick and place machines</b></figcaption></span></hr>
+							<p>Algorithms were developed for detection of events in the machines. These events were further used to generate parameters for the simulation model.
+								The events are as follows for the different machines: 
+								<ol><li>Line Loader - loading event (from vibration data)</li>
+								<li>Screen Printer: printing and cleaning events (from current data)</li>
+								<li>Pick and place machines: working/placing components on board (from vibration data)</li></ol>
+								Fig. 9 shows the event detection that is performed on the raw vibration data of the pick and place machines 1 and 2. The flow chart in Figs. A10 through A13 show how we have identified the events that take place in the different machines. </p>
+							<p></p>
+								<span class="image center"><img src="images/LD.jpg" height="742" width="542"/><figcaption style="text-align:center"><b>Fig. 11</b></figcaption></span>
+								<span class="image right"><img src="images/SP.jpg" height="742" width="542"/><figcaption style="text-align:center"><b>Fig. 12</b></figcaption></span>
+							<p></p>
+								<span class="image center"><img src="images/PP.jpg" height="742" width="542"/><figcaption style="text-align:center"><b>Fig. 13</b></figcaption></span>
+								<span class="image right"><img src="images/RF.jpg" height="742" width="542"/><figcaption style="text-align:center"><b>Fig. 14</b></figcaption></span>
+							<p></p>
+							<p>The following parameters are estimated from the event statistics for the different machines on a per board basis: 
+								<ol><li> Loader: loading time</li>
+								<li> Printer: cleaning time, printing time, power consumed during cleaning and printing, number of boards per cleaning event </li>
+								<li> Pick and place machines: working time, power consumed while working on board</li>
+								<li> Reflow Oven: power consumed in the idle, heating and maintain state.</li></ol>
+								The time spent in the idle state and the power consumed by each machine in this state is also calculated. 
+								
+								We are exploring how mapping of boards can be done between the two pick and place machines and the line loader and the screen printer.
+							</p>
+							<ul class="actions">
+									<li><a href="#" onclick="history.go(-1)" class="button scrolly">Go back</a></li>
+								</ul>
+						</div>
+					</section>
+			</div>
+			<div id="viz">
+			
+			
+				<!-- Main -->
+					<section id="viz1" class="wrapper">
+						<div class="inner">
+							<h1 class="major">Visualization</h1>
+							<p><a href="http://feynalytics.ml:5601/app/kibana#/dashboards?_g=(refreshInterval:(pause:!t,value:0),time:(from:now-30d,mode:quick,to:now))"><b>2D Dashboard -</b></a> We have developed a visualization dashboard in kibana that provides statistics of the parameters mentioned above. The dashboard gives the management at Vinyas a summary statistical analysis of the different machines states and energy consumption.</p>
+							<a href="http://feynalytics.ml:5601/app/kibana#/dashboards?_g=(refreshInterval:(pause:!t,value:0),time:(from:now-30d,mode:quick,to:now))"><span class="image fit"><img src="images/dash.png" alt="" /></span></a>
+							<p><b>3D Model -</b> A 3D model of the factory floor has been developed which can show the events occuring in the factory based on the events generated from the simulated model using OpenSim. The 3D model updates simulation parameters every hour. The simulator talks to the OpenSim over an Internet Relay Chat (IRC) channel. A proxy server is used at the Middleware to multiplex the incoming sensor data over REST APIs to the elasticsearch database, 3D model and the real-time stream analysis program.</p>
+							<video class="afterglow" width="854" height="480" id="demo" controls style="margin-left:15%"> 
+								<source src="videos/3ddemo.mp4" type="video/mp4">
+								<!-- <source src="movie.ogg" type="video/ogg"> -->
+							  <!-- Your browser does not support the video tag. -->
+							</video>
+								
+							<ul class="actions">
+									<li><a href="#" onclick="history.go(-1)" class="button scrolly">Go back</a></li>
+								</ul>
+						</div>
+					</section>
+			</div>
+					
+
+			
+
+		<!-- Footer -->
+			<footer id="footer" class="wrapper alt">
+				<div class="inner">
+					<ul class="menu">
+						<li>&copy; IIOT Team, RBCCPS. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+					</ul>
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+			<script src="assets/js/stickyjs/stickr.min.js"></script>
+
+	</body>
+
+
+	<style>
+		.backbutton{
+			float:right;
+			color:gray;
+			font-size:35px;
+			border:3px
+		}
+	</style>
+
+
+	<script>
+		backbtn="<a style='float:right;color:pink;font-size:25px;border:0px' class='primary small backbutton' onClick='function back(){window.history.back();return false}back();'> Back </a>"
+
+		$("h1.major").each(function (index){
+			original = $(this).html()
+			modded = original + backbtn
+			$(this).html(modded)
+		})
+		
+
+	</script>
+
+ 
+
+</html>
